@@ -1,8 +1,17 @@
-API  (Application Programming Interface) Nedir?
-📖 Tanım:
-API, yazılım uygulamalarının birbiriyle konuşmasını sağlayan bir aracıdır.
+# 📘 API (Application Programming Interface) Nedir?
 
-📦 Düşün ki bir restoran menüsüne bakıyorsun. Sen garsona sipariş veriyorsun, garson mutfağa gidiyor ve siparişini getiriyor.
+## 🔹 Tanım
+**API**, yazılım uygulamalarının birbiriyle konuşmasını sağlayan bir araçtır.
 
-🧑‍🍳 İşte API = garson.
-Uygulama senin için arka plandaki sistemle konuşur ve istediğin veriyi getirir.
+> 🧠 Düşün ki bir restorandasın. Menüyü inceliyorsun, siparişi garsona veriyorsun.  
+> Garson mutfağa gidiyor ve senin siparişini getiriyor.
+
+🍽️ İşte burada **API = garson** gibidir.  
+Senin uygulaman arka plandaki sistemle **API üzerinden iletişime geçer** ve istediğin veriyi getirir.
+
+---
+
+## 🔹 Kısaca
+- API'ler farklı sistemlerin birbiriyle veri alışverişi yapmasını sağlar.
+- Uygulamalar arasında **köprü görevi** görür.
+- En sık kullanılan API türü: **REST API**'dir.
