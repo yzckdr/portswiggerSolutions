@@ -228,4 +228,87 @@ Yapabileceklerin:
 
 > Makine tarafından okunabilir dokümantasyon, bir API'yi **hızlı, doğru ve etkili** şekilde analiz etmenin en güçlü yollarından biridir.
 
+## 🚩 API Uç Noktalarını Belirleme ve HTTP Yöntemleriyle Etkileşim
+
+---
+
+### 🔎 Uç Noktaları Belirleme
+
+Uygulamalarda API endpoint’lerini bulmak için:
+
+- Burp Tarayıcı’yı kullanarak uygulamayı gez
+- `/api/`, `.json`, `.js` gibi kalıpları URL’lerde ara
+- JavaScript dosyalarını incele (örnek: `main.js`)
+- Burp → **JS Link Finder** eklentisi ile daha fazla yol bul
+- Bazı endpoint’ler sadece uygulama içinde tetiklenir; manuel gezinme önemlidir
+
+---
+
+### 🔁 API Uç Noktalarıyla Etkileşim Kurma
+
+- **Burp Repeater** → Tekil istekleri test etmek için kullanılır
+- **Burp Intruder** → Otomatik olarak farklı parametre/metot denemeleri yapar
+
+Aşağıdaki durumları incele:
+
+- Yanıt mesajları ve hata açıklamaları
+- Desteklenen HTTP yöntemleri (GET, POST, PATCH, DELETE, OPTIONS...)
+- Desteklenen içerik türleri (`application/json`, `application/xml`, vs)
+
+---
+
+### 🔧 HTTP Yöntemleri
+
+| Metot     | Açıklama                                       |
+|-----------|------------------------------------------------|
+| GET       | Bir kaynaktan veri alır                        |
+| POST      | Yeni bir kaynak oluşturur                      |
+| PATCH     | Kaynağın bazı alanlarını günceller             |
+| PUT       | Kaynağı tamamen günceller                      |
+| DELETE    | Kaynağı siler                                  |
+| OPTIONS   | Desteklenen HTTP metotlarını listeler          |
+
+Örnek: `/api/tasks`
+
+GET     /api/tasks        → Görevleri listeler
+POST    /api/tasks        → Yeni görev oluşturur
+DELETE  /api/tasks/1      → ID=1 olan görevi siler
+OPTIONS /api/tasks        → Kullanılabilir metotları gösterir
+
+## 🎯 Intruder ile Gizli API Uç Noktalarını Bulmak
+
+Uygulama üzerinde bazı temel endpoint’leri (örneğin `/api/user/update`) keşfettikten sonra, Burp Suite’in **Intruder** modülü ile görünmeyen (gizli) endpoint’leri ortaya çıkarabilirsin.
+
+---
+
+### 🔍 Amaç
+
+Mevcut bir endpoint şu şekilde olabilir:
+
+PUT /api/user/update
+
+
+Bu, sistemde şu endpoint’lerin de bulunabileceğini düşündürebilir:
+
+
+Bu, sistemde şu endpoint’lerin de bulunabileceğini düşündürebilir:
+
+/api/user/delete
+/api/user/add
+/api/user/disable
+
+
+---
+
+### 🛠 Uygulama Adımları
+
+#### 1. Burp Intruder'a Bir İstek Gönder
+
+PUT /api/user/§update§ HTTP/1.1
+Host: example.com
+Authorization: Bearer [TOKEN]
+
+
+
+
 
