@@ -143,4 +143,89 @@ Kullanılabilecek araçlar:
 > 🔐 Bu yöntemler, dokümantasyonu yayında olmayan veya özel sistemlerde çalışan API’leri analiz ederken son derece faydalıdır.  
 > Özellikle güvenlik araştırmaları, penetration testleri veya tersine mühendislik çalışmalarında sıkça kullanılır.
 
+## 🤖 Makine Tarafından Okunabilir API Dokümantasyonunu Kullanmak
+
+Modern API sistemleri genellikle sadece insanlar için değil, **makineler tarafından da anlaşılabilecek şekilde belgelenir**. Bu tür dokümantasyonlar, yazılım araçları tarafından otomatik olarak analiz edilebilir, test edilebilir ve API istemcileri (client'lar) oluşturulabilir.
+
+---
+
+### 📄 1. Makine Tarafından Okunabilir Dokümantasyon Türleri
+
+| Format | Açıklama |
+|--------|----------|
+| **OpenAPI (Swagger)** | En yaygın formattır. JSON veya YAML olarak yazılır. Tüm endpoint'leri, parametreleri, veri türlerini içerir. |
+| **WSDL (SOAP)**       | XML tabanlı eski bir dokümantasyon biçimi. SOAP servislerinde yaygındır. |
+| **RAML / API Blueprint** | Alternatif şema tanım dilleridir. Genelde REST API’ler için kullanılır. |
+
+Bu belgeler genellikle şu yollar üzerinden erişilebilir:
+
+/openapi.json
+/swagger.json
+/swagger.yaml
+/api-docs
+
+
+---
+
+### 🛠️ 2. Bu Belgeleri İşlemek İçin Kullanabileceğin Araçlar
+
+#### ✅ Burp Suite + Burp Scanner
+
+- Burp Scanner, OpenAPI veya Swagger dosyalarını analiz ederek endpoint'leri çıkartabilir.
+- Bu endpoint’lere yönelik otomatik güvenlik testleri çalıştırabilir.
+- Swagger/OpenAPI JSON dosyasını verdiğinde tüm rotaları tarayıp açıkları tespit etmeye çalışır.
+
+#### ✅ Burp BApp Store: OpenAPI Parser
+
+- Burp Suite içine **“OpenAPI Parser”** eklentisini kur.
+- Bu eklenti `.json` veya `.yaml` uzantılı Swagger/OpenAPI belgelerini ayrıştırır.
+- Sonuç olarak: API endpoint’leri Burp Suite’e otomatik olarak eklenir ve taranabilir hale gelir.
+
+---
+
+### 🧪 3. Test İçin Kullanılabilecek Uygulamalar
+
+| Araç     | Açıklama |
+|----------|----------|
+| **Postman** | Swagger veya OpenAPI dosyasını içe aktararak API çağrıları yapmanı sağlar. |
+| **SoapUI**  | Özellikle SOAP servisleri için dokümantasyon ve test amaçlı kullanılır. |
+| **Insomnia**| Postman alternatifi, modern ve hafif bir API istemcisi. |
+
+Bu araçlar sayesinde:
+
+- Dokümantasyon içindeki endpoint'leri otomatik olarak çekebilir
+- Her endpoint için test isteği oluşturabilir
+- JSON body, headers, authentication gibi alanları kolayca yönetebilirsin
+
+---
+
+### 🧠 Neden Önemlidir?
+
+Makine tarafından okunabilir dokümantasyonun avantajları:
+
+- ⚙️ **Otomatik test ve denetim yapılabilir**
+- 🚀 **Kod üretimi yapılabilir** (örneğin OpenAPI → Python client)
+- 📋 **API dökümantasyonu elle yazmak zorunda kalmazsın**
+- 🔐 **Güvenlik açıklarını hızlıca analiz edebilirsin**
+
+---
+
+## 📘 Örnek Senaryo
+
+Bir web sunucusunda aşağıdaki path’i buldun:
+
+https://target.com/openapi.json
+
+
+Yapabileceklerin:
+
+1. Bu dosyayı indir
+2. Postman’e içe aktar → Test et
+3. Burp Suite → OpenAPI Parser ile yükle → Endpoint’leri çıkar
+4. Burp Scanner ile tarama başlat → Güvenlik açıklarını tespit et
+
+---
+
+> Makine tarafından okunabilir dokümantasyon, bir API'yi **hızlı, doğru ve etkili** şekilde analiz etmenin en güçlü yollarından biridir.
+
 
