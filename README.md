@@ -54,13 +54,93 @@ API şu cevabı döner:
 | Sosyal medya uygulamaları | Paylaşım yapmak, kullanıcı verisi almak             |
 | E-ticaret sistemleri      | Ürün listesi, sipariş oluşturma işlemleri           |
 
+## 🔍 API Dokümantasyonunu Keşfetmek (Discovering API Documentation)
+
+Bir API’nin dokümantasyonu açıkça yayınlanmamış olabilir. Ancak bu, hiçbir şekilde erişemeyeceğin anlamına gelmez. Aşağıdaki yöntemlerle API dokümantasyonunu keşfetme şansın vardır:
+
 ---
 
-## 🧪 API Testine Başlarken
+### 🧭 1. Uygulamaları Gözlemleyerek Dokümantasyonu Bulmak
 
-API ile çalışmaya başlamadan önce aşağıdaki adımları izlemelisin:
+API'ler genellikle bir web veya mobil uygulama tarafından zaten kullanılıyordur. Bu durumda:
 
-### ✅ 1. Uç Noktaları (Endpoints) Belirle
+- Uygulamayı aç
+- Tarayıcı geliştirici araçlarını (F12) kullan
+- `Network` sekmesinde istekleri izle
 
-Bir API’nin sunduğu veri yollarıdır. Örnek:
+Bu isteklerin içinde `/api`, `/swagger`, `/openapi.json` gibi yollar olabilir. Bu yollar dokümantasyon dosyalarına işaret edebilir.
+
+---
+
+### 🛠️ 2. Burp Suite ile API Tarama
+
+Burp Suite, hem manuel hem otomatik olarak API endpoint’lerini ve dokümantasyon yollarını keşfetmek için kullanılabilir.
+
+#### İki yöntem:
+- **Burp Scanner**: Uygulamayı otomatik olarak tarar ve API yollarını keşfeder.
+- **Burp Tarayıcısı (Manual)**: Uygulamada gezinirken yapılan tüm HTTP isteklerini kaydeder.
+
+Bu yöntemle gizlenmiş dokümantasyon yolları ortaya çıkabilir.
+
+---
+
+### 📄 3. Yaygın Dokümantasyon Yollarını Kontrol Et
+
+Aşağıdaki yollar API dokümantasyonuna işaret edebilir. Bunları manuel olarak veya Burp/Dirsearch gibi araçlarla kontrol edebilirsin:
+
+/api
+/swagger/index.html
+/swagger-ui.html
+/openapi.json
+/api-docs
+/v2/api-docs
+
+
+---
+
+### 📎 4. Kaynak Endpoint’ten Base Path’i Tespit Et
+
+Bir kaynak endpoint’i keşfettiysen örneğin:
+
+/api/swagger/v1/users/123
+
+
+Bunun kök yollarını da incelemelisin:
+
+- `/api/swagger/v1`
+- `/api/swagger`
+- `/api`
+
+Bu yollar genellikle dokümantasyon ve şema dosyalarını barındırır.
+
+---
+
+### 🧪 5. Yaygın Path Listeleriyle Brute Force Denemesi
+
+Eğer manuel taramayla sonuç alamadıysan, yaygın endpoint yollarından oluşan bir listeyle brute force (deneme-yanılma) taraması yapabilirsin.
+
+Kullanılabilecek araçlar:
+
+- **Burp Intruder**
+- **Dirsearch**
+- **FFUF**
+- **Gobuster**
+
+---
+
+## 🧠 Özet
+
+| Adım | Açıklama |
+|------|----------|
+| 🔍 Uygulamayı analiz et | Geliştirici araçları veya Burp ile gözlem |
+| 🛠️ Burp Scanner ile tarama yap | Otomatik endpoint keşfi |
+| 📂 Yaygın yolları dene | `/swagger`, `/api-docs`, `/openapi.json` gibi |
+| 📎 Kaynak path'ten base path çıkarımı yap | `/api/users/123` → `/api/` |
+| 🧪 Brute force testleri | Dirsearch, FFUF, Gobuster gibi araçlarla |
+
+---
+
+> 🔐 Bu yöntemler, dokümantasyonu yayında olmayan veya özel sistemlerde çalışan API’leri analiz ederken son derece faydalıdır.  
+> Özellikle güvenlik araştırmaları, penetration testleri veya tersine mühendislik çalışmalarında sıkça kullanılır.
+
 
